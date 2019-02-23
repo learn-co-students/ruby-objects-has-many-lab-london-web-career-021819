@@ -14,8 +14,8 @@ class Artist
     Song.all
   end
 
-  # I (self) am the artist!
-  # put the song into my array of songs....(created by initialize method)
+  # add the song into my array of songs....(created by initialize method)
+  # Tell the song that I am it's artist (self)
   def add_song(song)
     @songs << song
     song.artist = self
