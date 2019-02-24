@@ -1,36 +1,29 @@
 class Author
 
-  attr_accessor :name, :posts
+  attr_accessor :name
 
-  @@all_posts = 1
+  @@all = []
 
   def initialize(name)
     @name = name
-    @posts = []
+    @@all << self
   end
 
-
   def add_post(post)
-    @posts << post #add new post to author instance variable to store data
-    post.author = self  # access the author attribute on this post, and assign it to me using the = sign’
+    post.author = self
   end
 
   def add_post_by_title(title)
     post = Post.new(title)
-    @posts << post
     post.author = self
-    @@all_posts +=1
   end
 
-  def add_song_by_name(song)
-    song = Song.new(song)
-    @songs << song
-    song.artist = self
-    @@all_posts +=1
-  end
 
-  def self.post_count
-    @@all_posts
-  end
+  def posts
+     Post.all.select {|post| post.author == self}
+   end
 
+   def self.post_count
+     Post.all.count
+   end
 end
